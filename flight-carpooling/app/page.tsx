@@ -175,7 +175,7 @@ export default function SubmitPage() {
               type="text"
               value={form.name}
               onChange={update('name')}
-              placeholder="Jane Smith"
+              placeholder="Andrew Pollard"
               className={input(errors.name)}
             />
           </Field>
@@ -186,7 +186,7 @@ export default function SubmitPage() {
               type="email"
               value={form.email}
               onChange={update('email')}
-              placeholder="jane@company.com"
+              placeholder="apollard@clarkstonconsulting.com"
               className={input(errors.email)}
             />
           </Field>
