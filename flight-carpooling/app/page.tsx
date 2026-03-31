@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 
@@ -43,6 +43,14 @@ export default function SubmitPage() {
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState<{ id: string } | null>(null)
   const [toast, setToast] = useState<string | null>(null)
+  const [registrantCount, setRegistrantCount] = useState<number | null>(null)
+
+  useEffect(() => {
+    supabase
+      .from('travelers')
+      .select('id', { count: 'exact', head: true })
+      .then(({ count }) => { if (count !== null) setRegistrantCount(count) })
+  }, [])
 
   function validate(): boolean {
     const newErrors: Partial<FormData> = {}
@@ -132,6 +140,12 @@ export default function SubmitPage() {
     <>
       {toast && <Toast message={toast} onClose={() => setToast(null)} />}
       <div className="max-w-xl mx-auto">
+        {registrantCount !== null && (
+          <div className="mb-6 flex items-center gap-2 bg-green-50 border border-green-200 text-green-800 text-sm px-4 py-3 rounded-lg">
+            <span className="text-lg font-bold">{registrantCount}</span>
+            <span>{registrantCount === 1 ? 'traveler registered' : 'travelers registered'} so far</span>
+          </div>
+        )}
         <h1 className="text-2xl font-semibold mb-1">Register Your Flights</h1>
         <p className="text-gray-500 text-sm mb-4">
           Submit your arrival and departure info so we can group you with coworkers for shared Ubers.

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'SEA Offsite Ride Share',
+  title: 'Company Meeting Rideshare Matchmaker',
   description: 'Coordinate Uber groups for the company offsite in Seattle',
 }
 
@@ -18,7 +18,7 @@ export default function RootLayout({
         <header className="bg-white border-b border-gray-200">
           <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
             <Link href="/" className="font-semibold text-lg tracking-tight">
-              SEA Offsite Ride Share
+              Company Meeting Rideshare Matchmaker
             </Link>
             <nav className="flex gap-4 text-sm text-gray-500">
               <Link href="/" className="hover:text-gray-900 transition-colors">Register</Link>

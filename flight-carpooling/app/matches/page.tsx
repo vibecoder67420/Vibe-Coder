@@ -18,10 +18,12 @@ function GroupCard({
   group,
   myId,
   label,
+  timeKey,
 }: {
   group: TravelerGroup
   myId: string | null
   label: string
+  timeKey: 'arrival_time' | 'departure_time'
 }) {
   const windowStr =
     group.windowStart === group.windowEnd
@@ -60,7 +62,7 @@ function GroupCard({
               )}
             </div>
             <div className="text-right shrink-0">
-              <div className="text-xs text-gray-600">{formatTime(t.arrival_time)}</div>
+              <div className="text-xs text-gray-600">{formatTime(t[timeKey])}</div>
               <div className="text-xs text-gray-400">{t.luggage}</div>
             </div>
           </div>
@@ -75,11 +77,13 @@ function Section({
   groups,
   myId,
   label,
+  timeKey,
 }: {
   title: string
   groups: TravelerGroup[]
   myId: string | null
   label: string
+  timeKey: 'arrival_time' | 'departure_time'
 }) {
   return (
     <section>
@@ -102,7 +106,7 @@ function Section({
                 )}
               </div>
             ) : (
-              <GroupCard key={g.id} group={g} myId={myId} label={label} />
+              <GroupCard key={g.id} group={g} myId={myId} label={label} timeKey={timeKey} />
             )
           )}
         </div>
@@ -163,16 +167,18 @@ export default function MatchesPage() {
       ) : (
         <div className="space-y-12">
           <Section
-            title="Arrival Groups (Hotel → Airport pickup)"
+            title="Arrival Groups (Airport → Hotel)"
             groups={arrivalGroups}
             myId={myId}
             label="Arrival"
+            timeKey="arrival_time"
           />
           <Section
-            title="Departure Groups (Hotel → Airport dropoff)"
+            title="Departure Groups (Hotel → Airport)"
             groups={departureGroups}
             myId={myId}
             label="Departure"
+            timeKey="departure_time"
           />
         </div>
       )}
