@@ -144,7 +144,7 @@ export default function SubmitPage() {
       {/* Full-width banner — sits outside the constrained form column */}
       <div className="relative w-full rounded-xl overflow-hidden mb-8" style={{ maxWidth: '100%' }}>
         <Image
-          src="/seattle-banner.png"
+          src="/seattle-banner.png.png"
           alt="Seattle Company Meeting"
           width={1700}
           height={600}
