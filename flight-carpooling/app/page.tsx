@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 
@@ -139,6 +140,19 @@ export default function SubmitPage() {
   return (
     <>
       {toast && <Toast message={toast} onClose={() => setToast(null)} />}
+
+      {/* Full-width banner — sits outside the constrained form column */}
+      <div className="relative w-full rounded-xl overflow-hidden mb-8" style={{ maxWidth: '100%' }}>
+        <Image
+          src="/seattle-banner.png"
+          alt="Seattle Company Meeting"
+          width={1700}
+          height={600}
+          className="w-full h-auto object-cover"
+          priority
+        />
+      </div>
+
       <div className="max-w-xl mx-auto">
         {registrantCount !== null && (
           <div className="mb-6 flex items-center gap-2 bg-green-50 border border-green-200 text-green-800 text-sm px-4 py-3 rounded-lg">
