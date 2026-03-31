@@ -133,9 +133,12 @@ export default function SubmitPage() {
       {toast && <Toast message={toast} onClose={() => setToast(null)} />}
       <div className="max-w-xl mx-auto">
         <h1 className="text-2xl font-semibold mb-1">Register Your Flights</h1>
-        <p className="text-gray-500 text-sm mb-8">
+        <p className="text-gray-500 text-sm mb-4">
           Submit your arrival and departure info so we can group you with coworkers for shared Ubers.
         </p>
+        <div className="bg-blue-50 border border-blue-200 text-blue-700 text-sm px-4 py-3 rounded-lg mb-8">
+          All times should be entered in Pacific Time (Seattle)
+        </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Name */}
@@ -183,7 +186,7 @@ export default function SubmitPage() {
           </Field>
 
           {/* Arrival time */}
-          <Field label="Arrival Date & Time" error={errors.arrival_time} required>
+          <Field label="Arrival at Seattle-Tacoma International Airport (SEA)" hint="Enter time in Seattle time (Pacific Time)" error={errors.arrival_time} required>
             <input
               type="datetime-local"
               value={form.arrival_time}
@@ -193,7 +196,7 @@ export default function SubmitPage() {
           </Field>
 
           {/* Departure time */}
-          <Field label="Departure Date & Time" error={errors.departure_time} required>
+          <Field label="Departure from Hyatt Regency Seattle" hint="Enter time in Seattle time (Pacific Time)" error={errors.departure_time} required>
             <input
               type="datetime-local"
               value={form.departure_time}
