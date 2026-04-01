@@ -10,7 +10,11 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const cache = new NodeCache({ stdTTL: 15 });
 
-app.use(cors({ origin: ['http://localhost:5173', 'http://127.0.0.1:5173'] }));
+const ALLOWED_ORIGINS = process.env.CORS_ORIGINS
+  ? process.env.CORS_ORIGINS.split(',')
+  : ['http://localhost:5173', 'http://127.0.0.1:5173'];
+
+app.use(cors({ origin: ALLOWED_ORIGINS }));
 app.use(express.json());
 
 // yahoo-finance2 v2 exports a class
